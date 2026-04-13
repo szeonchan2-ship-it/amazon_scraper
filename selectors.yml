@@ -1,25 +1,25 @@
 product_title:
-    css: 'h1 a[data-hook="product-link"]'
+    css: 'a[data-hook="product-link"]'
     type: Text
 reviews:
-    css: 'div.review div.a-section.celwidget'
+    css: 'div[data-hook="review"]'
     multiple: true
     type: Text
     children:
         title:
-            css: a.review-title
+            css: 'a[data-hook="review-title"] span'
             type: Text
         content:
-            css: 'div.a-row.review-data span.review-text'
+            css: 'span[data-hook="review-body"] span'
             type: Text
         date:
-            css: span.a-size-base.a-color-secondary
+            css: 'span[data-hook="review-date"]'
             type: Text
         variant:
-            css: 'a.a-size-mini'
+            css: 'a.a-size-mini.a-link-normal'
             type: Text
         images:
-            css: img.review-image-tile
+            css: 'img[data-hook="review-image-tile"]'
             multiple: true
             type: Attribute
             attribute: src
@@ -30,7 +30,7 @@ reviews:
             css: span.a-profile-name
             type: Text
         rating:
-            css: 'div.a-row > a > i > span'
+            css: 'i[data-hook="review-star-rating"] span'
             type: Text
 next_page:
     css: 'li.a-last a'
