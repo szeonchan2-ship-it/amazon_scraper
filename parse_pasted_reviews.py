@@ -67,6 +67,17 @@ def parse_reviews(raw_text: str) -> List[Dict[str, str]]:
     return reviews
 
 
+def write_reviews_csv(records: List[Dict[str, str]], output_path: str) -> None:
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["rating", "title", "content"],
+            quoting=csv.QUOTE_ALL,
+        )
+        writer.writeheader()
+        writer.writerows(records)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract Amazon review title/content from pasted text."
@@ -91,14 +102,7 @@ def main() -> None:
         raw_text = sys.stdin.read()
 
     records = parse_reviews(raw_text)
-    with open(args.output, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=["rating", "title", "content"],
-            quoting=csv.QUOTE_ALL,
-        )
-        writer.writeheader()
-        writer.writerows(records)
+    write_reviews_csv(records, args.output)
 
     print(f"Parsed {len(records)} reviews -> {args.output}")
 
