@@ -280,8 +280,7 @@ def process_job(job_id: str, header: List[str], data_rows: List[List[str]], inst
             content = row[2] if len(row) > 2 else ""
             summary = call_openai_summary(api_key, model, instruction, content) if content.strip() else ""
             output_rows.append(list(row) + [summary])
-            if idx <= 100:
-                preview_rows.append({"idx": idx, "content": content, "summary": summary})
+            preview_rows.append({"idx": idx, "content": content, "summary": summary})
 
             JOBS[job_id]["completed"] = idx
             JOBS[job_id]["preview_rows"] = preview_rows
